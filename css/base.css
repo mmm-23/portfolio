@@ -14,14 +14,15 @@
 	--color-text: #F7F6FC;
 	--color-sub-text: #f7f6fc98;
 	--color-bg: #1D1E22;
-	--color-link: rgba(0,0,0,0.6); /* 기본값 확인 필요 - 검은 배경에 검은 링크? */
-	--color-link-hover: #1D1E22; /* 기본값 확인 필요 - 검은 배경에 검은 호버? */
+	--color-link: rgba(255, 255, 255, 0.6); 
+	--color-link-hover: #F7F6FC; /* 기본값 확인 필요 - 검은 배경에 검은 호버? */
 	--color-bg-1: #366DFE;
-	--color-bg-2: #3160E6;
-	--color-bg-3: #29BBB6;
-	--color-bg-4: #EC5741;
-	--color-bg-5: #FE8D2F;
-	--color-bg-6: #6200EB;
+	--color-bg-2: #076581;
+	--color-bg-3: #37C4BE;
+	--color-bg-4: #C91145;
+	/* --color-bg-4: #EC5741; */
+	--color-bg-5: #A39079;
+	--color-bg-6: #28201D;
 }
 
 html {
@@ -52,6 +53,7 @@ body {
 	font-variation-settings: "slnt" 0, "wdth" 150, "wght" 500, "INKT" 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	transition: all 1s cubic-bezier(0, 0.55, 0.45, 1) 0.3s;
 }
 
 a {
@@ -169,6 +171,9 @@ i {
 	align-content: end; /* Aligns items to the bottom */
 }
 
+.frame.frame--header a:hover {
+    color: var(--color-link-hover);
+}
 .frame a {
 	pointer-events: auto;
 }
@@ -177,17 +182,18 @@ i {
 	grid-area: title;
 	font-size: inherit;
 	margin: 0;
-	font-size: 1.375rem;
+	font-size: 1.25rem;
 	font-weight: 900;
+	letter-spacing: -0.0625rem;
 }
 
-.frame__back { /* Header Link */
+.frame__back { 
 	grid-area: back;
 	justify-self: start;
 	font-size: 0.9rem;
 }
 
-.frame__prev { /* Header Link */
+.frame__prev { 
 	grid-area: prev;
 	justify-self: start;
 	font-size: 0.9rem;
@@ -233,35 +239,107 @@ i {
 }
 
 .card-section {
-    height: 100vh;
+    /* height: 80vh; */
     position: relative;
 		font-family: "pretendard", sans-serif;
 }
 
-.card-section .content--sticky {
-	position: absolute;
-	top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95vw;
-  /* max-width: 640px; */
-  /* will-change: transform, opacity, filter; */
+.card-section .content {
+	width: 43.75rem;
+	height: 43.75rem;
 }
 
-/* .card-link {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 95vw;
-    max-width: 640px;
-    height: 80vh;
-    
-    text-decoration: none;
-    color: inherit;
-    z-index: 1000;
-} */
+.card-section .bg-1 {
+	background-image: url(/img/cover_1.jpg);
+
+}
+.card-section .bg-3{
+	background-image: url(/img/cover_3.jpg);
+}
+.card-section .bg-4{
+	background-image: url(/img/cover_4.jpg);
+}
+.card-section .bg-5{
+	background-image: url(/img/cover_5.jpg);
+}
+
+.content--sticky {
+  position: fixed;
+	top: 50%;
+	left: 50%;
+	/* width: 95vw;
+	max-width: 480px; */
+	transform-origin: center center;
+	transform: translate(-50%, -50%);
+}
+
+.content--card {
+    height: 55vh;
+    aspect-ratio: 0.8;
+    margin: 0;
+    /* border-radius: 14px; */
+    text-align: center;
+    overflow: hidden;
+    padding: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content--card .content__img--small {
+    height: 35%;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 3vh;
+}
+
+.content--card .content__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 0;
+}
+
+.content--card .content__title i {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.content--card .content__text {
+    margin: 0;
+    max-width: 90%;
+    line-height: 1.5;
+    margin-top: 3vh;
+}
+
+/* 배경 텍스트 영역 */
+.background-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background-text-item {
+  position: absolute;
+  top: 50%;
+  left: 0; /* 좌측 시작 */
+  transform: translateY(-50%);
+  display: inline-block;
+  font-family: "area-variable", "Pretendard", sans-serif;
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;
+}
 
 .content--card {
 	/* display: flex; */
@@ -269,7 +347,7 @@ i {
 	height: 65vh;
 	aspect-ratio: 0.8;/* 카드 비율 */
 	margin: 0;
-	border-radius: 14px;
+	/* border-radius: 14px; */
 	/* gap: 3vh; */
 	text-align: center;
 	overflow: hidden;
@@ -313,6 +391,13 @@ i {
 .bg-5 { background: var(--color-bg-5); }
 .bg-6 { background: var(--color-bg-6); }
 
+/* 배경 텍스트 색상/투명도 카드별 */
+.background-text-item.bg-1 { color: rgba(254, 54, 54, 0.15); }
+.background-text-item.bg-2 { color: rgba(7, 101, 129, 0.15); }
+.background-text-item.bg-3 { color: rgba(55, 196, 190, 0.15); }
+.background-text-item.bg-4 { color: rgba(201, 17, 69, 0.15); }
+.background-text-item.bg-5 { color: rgba(163, 144, 121, 0.15); }
+
 
 /* ==========================================================================
 		Project Menu List (Bottom Center)
@@ -327,6 +412,7 @@ i {
 	display: grid;
 	place-items: center;
 	background-color: rgba(180, 131, 114, 0.2);
+	background-color: rgb(57 54 54 / 50%);
 	width: 32.5rem;
 	height: 5rem;
 	border-radius: 0.625rem;
@@ -415,7 +501,4 @@ i {
 	.card-section .content--sticky {
         width: 50vw;
     }
-    .content--card {
-		/* width: 50vw; */
 	}
-}

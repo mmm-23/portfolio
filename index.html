@@ -7,8 +7,7 @@
 	<title>SANS Portfolio</title>
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
-	<link rel="stylesheet" href="https://use.typekit.net/lsf5xpv.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css" />
 </head>
 
 <body class="loading">
@@ -21,22 +20,23 @@
 		</header>
 
 		<nav class="project-menu-list">
-			<a href="#" class="project-menu-list__item" data-index="0"><i>신한 통합 금융 앱,</i>신한 슈퍼 SOL</a>
-			<a href="#" class="project-menu-list__item" data-index="1"><i>Samsung</i>Microfiber Filter</a>
-			<a href="#" class="project-menu-list__item" data-index="2"><i>우아한형제들</i>채용 사이트 디자인</a>
-			<a href="#" class="project-menu-list__item" data-index="3"><i>SK에너지</i>세차,주유를 위한 머핀</a>
-			<a href="#" class="project-menu-list__item" data-index="4"><i>신세계 뷰티 놀이터</i>Chicor</a>
+			<a href="/projects/super-sol" class="project-menu-list__item" data-index="0">신한 슈퍼 SOL</a>
+			<a href="/projects/microfiber-filter" class="project-menu-list__item" data-index="1">Samsung Microfiber Filter</a>
+			<a href="/projects/baemin" class="project-menu-list__item" data-index="2">우아한형제들 채용</a>
+			<a href="/projects/sk-muffin" class="project-menu-list__item" data-index="3">SK Muffin</a>
+			<a href="/projects/chicor" class="project-menu-list__item" data-index="4">Chicor</a>
 		</nav>
 
 		<div class="scroll-wrapper" id="scrollWrapper">
-
+			<!-- 카드 섹션 -->
 			<section class="card-section">
 				<div class="content content--sticky content--card bg-1" data-index="0">
-					<img class="content__img content__img--small" src="img/11.png" />
-					<h2 class="content__title"><i>신한 통합 금융 앱,</i>신한 슈퍼 SOL</h2>
-					<p class="content__text text-meta">The algorithm's workings are shrouded in complexity.</p>
+					<!-- <img class="content__img content__img--small" src="img/11.png" /> -->
+					<!-- <h2 class="content__title"><i>신한 통합 금융 앱,</i>신한 슈퍼 SOL</h2> -->
+					<!-- <p class="content__text text-meta">The algorithm's workings are shrouded in complexity.</p> -->
 				</div>
 			</section>
+
 			<section class="card-section">
 				<div class="content content--sticky content--card bg-2" data-index="1">
 					<img class="content__img content__img--small" src="img/12.png" />
@@ -44,27 +44,39 @@
 					<p class="content__text text-meta">Enshrining the principles of conformity and reinforcing the status quo.</p>
 				</div>
 			</section>
+
 			<section class="card-section">
 				<div class="content content--sticky content--card bg-3" data-index="2">
-					<img class="content__img content__img--small" src="img/9.png" />
+					<!-- <img class="content__img content__img--small" src="img/9.png" />
 					<h2 class="content__title"><i>우아한형제들</i>채용 사이트 디자인</h2>
-					<p class="content__text text-meta">The elusive entities, lacking human form, operate in the shadows.</p>
+					<p class="content__text text-meta">The elusive entities, lacking human form, operate in the shadows.</p> -->
 				</div>
 			</section>
+
 			<section class="card-section">
 				<div class="content content--sticky content--card bg-4" data-index="3">
-					<img class="content__img content__img--small" src="img/8.png" />
+					<!-- <img class="content__img content__img--small" src="img/8.png" />
 					<h2 class="content__title"><i>세차,주유를 위한</i>SK에너지 Muffin</h2>
-					<p class="content__text text-meta">This overlooked realm, a consequence of algorithmic judgments.</p>
+					<p class="content__text text-meta">This overlooked realm, a consequence of algorithmic judgments.</p> -->
 				</div>
 			</section>
+
 			<section class="card-section">
 				<div class="content content--sticky content--card bg-5" data-index="4">
-					<img class="content__img content__img--small" src="img/7.png" />
-					<h2 class="content__title"><i>신세계 뷰티 놀이터</i>Chicor</h2>
-					<p class="content__text text-meta">The collective story sculpted by the architects.</p>
+					<!-- <img class="content__img content__img--small" src="img/7.png" /> -->
+					<!-- <h2 class="content__title"><i>신세계 뷰티 놀이터</i>Chicor</h2> -->
+					<!-- <p class="content__text text-meta">The collective story sculpted by the architects.</p> -->
 				</div>
 			</section>
+
+			<!-- 배경 텍스트 (카드별 하나씩만) -->
+			<div class="background-text">
+				<div class="background-text-item" data-text="SHINHAN SUPER SOL"></div>
+				<div class="background-text-item" data-text="SAMSUNG MICROFIBER FILTER"></div>
+				<div class="background-text-item" data-text="BAEMIN CAREERS BAEMIN CAREERS"></div>
+				<div class="background-text-item" data-text="SK MUFFIN SK MUFFIN"></div>
+				<div class="background-text-item" data-text="SHINSEGAE CHICOR SHINSEGAE CHICOR"></div>
+			</div>
 		</div>
 
 		<footer class="frame frame--footer">
