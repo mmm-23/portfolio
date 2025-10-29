@@ -413,13 +413,14 @@ i {
 	z-index: 2500;
 	display: grid;
 	place-items: center;
-	background-color: rgba(180, 131, 114, 0.2);
+	/* background-color: rgba(180, 131, 114, 0.2); */
 	background-color: rgb(57 54 54 / 50%);
 	width: 32.5rem;
 	height: 5rem;
 	border-radius: 0.625rem;
 	transition: opacity 0.3s ease;
 	font-family: "pretendard", sans-serif;
+	backdrop-filter: blur(10px);
 }
 
 .project-menu-list__item {
@@ -448,6 +449,35 @@ i {
     color: var(--color-sub-text);
     margin-bottom: 0.25rem;
 }
+
+.menu-icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1.1rem;
+	color: var(--color-sub-text);
+	opacity: 0;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+.project-menu-list button {
+  background: none;
+  border: none;
+  color: var(--color-text, #fff);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-menu-list button:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
 
 /* ==========================================================================
 		Responsive Styles (Desktop)

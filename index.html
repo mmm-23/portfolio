@@ -20,12 +20,54 @@
 		</header>
 
 		<nav class="project-menu-list">
-			<a href="/projects/super-sol" class="project-menu-list__item" data-index="0">신한 슈퍼 SOL</a>
-			<a href="/projects/microfiber-filter" class="project-menu-list__item" data-index="1">Samsung Microfiber Filter</a>
-			<a href="/projects/baemin" class="project-menu-list__item" data-index="2">우아한형제들 채용</a>
-			<a href="/projects/sk-muffin" class="project-menu-list__item" data-index="3">SK Muffin</a>
-			<a href="/projects/chicor" class="project-menu-list__item" data-index="4">Chicor</a>
+			<!-- <button class="menu-icon" aria-label="전체 메뉴">
+				<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<line x1="3" y1="6" x2="21" y2="6"></line>
+					<line x1="3" y1="12" x2="21" y2="12"></line>
+					<line x1="3" y1="18" x2="21" y2="18"></line>
+				</svg>
+			</button> -->
+			<a href="#" class="project-menu-list__item" data-index="0" data-slug="super-sol">
+				<span class="menu-icon menu-icon--left">≡</span>
+				<span class="menu-text">신한 슈퍼 SOL</span>
+				<span class="menu-icon menu-icon--right">→</span>
+			</a>
+			<a href="#" class="project-menu-list__item" data-index="1" data-slug="microfiber-filter">
+				<span class="menu-icon menu-icon--left">≡</span>
+				<span class="menu-text">Samsung Microfiber Filter</span>
+				<span class="menu-icon menu-icon--right">→</span>
+			</a>
+			<a href="#" class="project-menu-list__item" data-index="2" data-slug="baemin">
+				<span class="menu-icon menu-icon--left">≡</span>
+				<span class="menu-text">우아한형제들 채용</span>
+				<span class="menu-icon menu-icon--right">→</span>
+			</a>
+			<a href="#" class="project-menu-list__item" data-index="3" data-slug="sk-muffin">
+				<span class="menu-icon menu-icon--left">≡</span>
+				<span class="menu-text">SK Muffin</span>
+				<span class="menu-icon menu-icon--right">→</span>
+			</a>
+			<a href="#" class="project-menu-list__item" data-index="4" data-slug="chicor">
+				<span class="menu-icon menu-icon--left">≡</span>
+				<span class="menu-text">Chicor</span>
+				<span class="menu-icon menu-icon--right">→</span>
+			</a>
+			<!-- <button class="detail-icon" aria-label="프로젝트 페이지로 이동">
+				<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<line x1="5" y1="12" x2="19" y2="12"></line>
+					<polyline points="12 5 19 12 12 19"></polyline>
+				</svg>
+			</button> -->
 		</nav>
+		
+		<div id="project-detail" class="project-detail hidden">
+			<button id="close-detail" class="close-detail">← Back</button>
+			<div class="project-content">
+				<h2 class="project-title"></h2>
+				<p class="project-desc"></p>
+			</div>
+		</div>
+		
 
 		<div class="scroll-wrapper" id="scrollWrapper">
 			<!-- 카드 섹션 -->
