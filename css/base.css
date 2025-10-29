@@ -185,6 +185,7 @@ i {
 	font-size: 1.25rem;
 	font-weight: 900;
 	letter-spacing: -0.0625rem;
+	user-select: none;
 }
 
 .frame__back { 
@@ -245,13 +246,14 @@ i {
 }
 
 .card-section .content {
-	width: 43.75rem;
-	height: 43.75rem;
+	/* width: 43.75rem;
+	height: 43.75rem; */
+	background-size: cover;
 }
 
 .card-section .bg-1 {
 	background-image: url(/img/cover_1.jpg);
-
+	
 }
 .card-section .bg-3{
 	background-image: url(/img/cover_3.jpg);

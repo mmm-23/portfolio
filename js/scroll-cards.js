@@ -1,7 +1,3 @@
-// ============================================================
-// VirtualCardStack + Background Text (무한 루프 + 부드러운 색상)
-// ============================================================
-
 class VirtualCardStack {
   constructor() {
     this.cards = Array.from(document.querySelectorAll('.content--sticky'));
@@ -36,8 +32,10 @@ class VirtualCardStack {
       card.style.position = 'fixed';
       card.style.top = '50%';
       card.style.left = '50%';
-      card.style.width = '43.75rem';
-      card.style.maxWidth = '43.75rem';
+      card.style.width = '30vw';
+      card.style.height = '30vw';
+      card.style.maxWidth = '50vw';
+      card.style.maxHeight = '50vw';
       card.style.transformOrigin = 'center center';
       card.style.transform = 'translate(-50%, -50%)';
     });
