@@ -15,9 +15,10 @@
 	--color-sub-text: #f7f6fc98;
 	--color-bg: #1D1E22;
 	--color-link: rgba(255, 255, 255, 0.6); 
-	--color-link-hover: #F7F6FC; /* 기본값 확인 필요 - 검은 배경에 검은 호버? */
+	--color-link-hover: #F7F6FC;
 	--color-bg-1: #366DFE;
-	--color-bg-2: #076581;
+	/* --color-bg-2: #076581; */
+	--color-bg-2: #1958ff;
 	--color-bg-3: #37C4BE;
 	--color-bg-4: #C91145;
 	/* --color-bg-4: #EC5741; */
@@ -166,7 +167,7 @@ i {
 	bottom: 0;
 	left: 0;
 	padding-top: 1.5rem;
-	padding-bottom: 1.5rem;
+	bottom: 1.5rem;
 	grid-template-areas: 'credits' 'author';
 	align-content: end; /* Aligns items to the bottom */
 }
@@ -186,6 +187,8 @@ i {
 	font-weight: 900;
 	letter-spacing: -0.0625rem;
 	user-select: none;
+	/* font-family: "rotalic"; */
+	/* line-height: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px); */
 }
 
 .frame__back { 
@@ -235,8 +238,10 @@ i {
 }
 
 .scroll-wrapper {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
+	height: 100vh;
+  overflow: hidden;
 }
 
 .card-section {
@@ -253,7 +258,9 @@ i {
 
 .card-section .bg-1 {
 	background-image: url(/img/cover_1.jpg);
-	
+}
+.card-section .bg-2 {
+	background-image: url(/img/cover_2.jpg);
 }
 .card-section .bg-3{
 	background-image: url(/img/cover_3.jpg);
@@ -329,18 +336,22 @@ i {
 .background-text-item {
   position: absolute;
   top: 50%;
-  left: 0; /* 좌측 시작 */
+  left: 0;
   transform: translateY(-50%);
   display: inline-block;
-  font-family: "area-variable", "Pretendard", sans-serif;
-  font-size: 6rem;
+  font-family: "rotalic", "Pretendard", sans-serif;
+	font-size: 9rem;
   font-weight: 900;
   color: rgba(255,255,255,0.2);
   text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
-  will-change: transform, opacity;
-  opacity: 0;
+	backface-visibility: hidden;
+	transform: translate3d(0, 0, 10rem);
+  transform-style: flat;
+  animation: _textAnim_1fzwd_1 10s infinite linear;
+	letter-spacing: 1rem;
+	line-height: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px);
 }
 
 .content--card {
@@ -406,21 +417,21 @@ i {
    ========================================================================== */
 
 .project-menu-list {
-	position: fixed;
-	left: 50%;
-	bottom: 3rem;
-	transform: translateX(-50%);
-	z-index: 2500;
-	display: grid;
-	place-items: center;
-	/* background-color: rgba(180, 131, 114, 0.2); */
-	background-color: rgb(57 54 54 / 50%);
-	width: 32.5rem;
-	height: 5rem;
-	border-radius: 0.625rem;
-	transition: opacity 0.3s ease;
-	font-family: "pretendard", sans-serif;
-	backdrop-filter: blur(10px);
+  position: fixed;
+  left: 50%;
+  bottom: 3rem;
+  transform: translateX(-50%);
+  width: 32.5rem;
+  height: 5rem;
+  background-color: rgba(57,54,54,0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 0.625rem;
+  z-index: 2500;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
 }
 
 .project-menu-list__item {
@@ -433,6 +444,11 @@ i {
 	transition: opacity 0.3s ease, transform 0.3s ease;
 	text-align: center;
 	color: var(--color-text);
+}
+
+.project-menu-list__item .menu-text {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .project-menu-list__item.active {
@@ -450,34 +466,44 @@ i {
     margin-bottom: 0.25rem;
 }
 
-.menu-icon {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	font-size: 1.1rem;
-	color: var(--color-sub-text);
-	opacity: 0;
-	transition: opacity 0.3s ease, transform 0.3s ease;
-	pointer-events: auto;
-	cursor: pointer;
+.project-center {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.project-menu-list button {
+.menu-icon {
   background: none;
   border: none;
-  color: var(--color-text, #fff);
+  color: var(--color-text);
+  font-size: 1.25rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
-.project-menu-list button:hover {
-  opacity: 0.8;
+.menu-icon:hover {
   transform: scale(1.1);
 }
 
+/* ==========================================================================
+		Responsive Styles (Mobile)
+   ========================================================================== */
+
+@media screen and (max-width: 63em) {
+	.frame--header {
+		grid-template-columns: auto 1fr auto auto;
+		grid-template-areas: "title . back prev";
+	}
+
+	.frame--footer {
+		display: none;
+	}
+}
 
 /* ==========================================================================
 		Responsive Styles (Desktop)

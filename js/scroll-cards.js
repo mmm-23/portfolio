@@ -111,8 +111,9 @@ class VirtualCardStack {
         opacity = 1,
         zIndex = 100,
         brightness = 1;
-      const stackYMultiplier = 7;
-      const scaleMultiplier = 0.05;
+      
+      const stackYMultiplier = 10;
+      const scaleMultiplier = 0.07;
       const incomingYStart = 100;
 
       if (offset >= 0 && offset < 3) {

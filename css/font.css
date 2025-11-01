@@ -46,3 +46,11 @@ font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
 .tk-ff-more-web-pro-condensed { font-family: "ff-more-web-pro-condensed",serif; }
 .tk-antarctican-mono { font-family: "antarctican-mono",sans-serif; }
 .tk-area-variable { font-family: "area-variable",sans-serif; }
+
+
+@font-face {
+  font-family: "rotalic";
+  src: url("/assets/GTHaptikMediumRotalic.9e624b7f.woff") format("woff"), url("https://www.paffi.it/assets/GTHaptikMediumRotalic.00da9f78.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
