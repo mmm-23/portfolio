@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dir \"D:\\00web\\portfolio\\js\" /b)"
+      "Bash(dir \"D:\\00web\\portfolio\\js\" /b)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []

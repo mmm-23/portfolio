@@ -8,26 +8,30 @@
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/base.css" />
 	<link rel="stylesheet" type="text/css" href="css/font.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 
 <body class="loading">
 	<main>
+		<div id="sideMenuContainer"></div>
 		<header class="frame frame--header">
 			<h1 class="frame__title">Sans</h1>
-			<a class="frame__back" href="#">About Me</a>
+			<a class="frame__back" id="aboutMeToggle" href="#">About Me</a>
 			<!-- <a class="frame__prev" href="#">Contact</a> -->
 			<!-- <a class="frame__sub" href="#">Subscribe to our frontend news</a> -->
 		</header>
 
 		<div class="project-menu-list">
 			<button class="menu-icon left-icon" id="menuToggle">☰</button>
-			<div id="currentProject" class="project-center"></div>
-			<button class="menu-icon right-icon" id="projectOpen">↗</button>
+			<!-- 카드 타이틀-->
+			<div id="currentProject" class="project-center" onclick="toggleDetail()"></div>
+			<button class="menu-icon right-icon" id="projectOpen" onclick="toggleDetail()">↗</button>
 		</div>
 
 		<div class="scroll-wrapper" id="scrollWrapper">
 			<!-- 카드 섹션 -->
 			<section class="card-section">
+				<input type="hidden" class="center-title" value="신한">
 				<a href="#">
 					<div class="content content--sticky content--card bg-1" data-index="0">
 						<!-- <img class="content__img content__img--small" src="img/11.png" /> -->
@@ -38,6 +42,7 @@
 			</section>
 
 			<section class="card-section">
+				<input type="hidden" class="center-title" value="삼성">
 				<a href="#">
 					<div class="content content--sticky content--card bg-2" data-index="1">
 						<!-- <img class="content__img content__img--small" src="img/12.png" />
@@ -48,6 +53,7 @@
 			</section>
 
 			<section class="card-section">
+				<input type="hidden" class="center-title" value="배민">
 				<a href="#">
 					<div class="content content--sticky content--card bg-3" data-index="2">
 						<!-- <img class="content__img content__img--small" src="img/9.png" />
@@ -58,6 +64,7 @@
 			</section>
 
 			<section class="card-section">
+				<input type="hidden" class="center-title" value="머핀">
 				<a href="#">
 					<div class="content content--sticky content--card bg-4" data-index="3">
 						<!-- <img class="content__img content__img--small" src="img/8.png" />
@@ -68,6 +75,7 @@
 			</section>
 
 			<section class="card-section">
+				<input type="hidden" class="center-title" value="화장품">
 				<a href="#">
 					<div class="content content--sticky content--card bg-5" data-index="4">
 						<!-- <img class="content__img content__img--small" src="img/7.png" /> -->
@@ -77,13 +85,31 @@
 				</a>
 			</section>
 
-			<!-- 배경 텍스트 (카드별 하나씩만) -->
-			<div class="background-text">
-				<div class="background-text-item" data-text="SHINHAN SUPER SOL"></div>
-				<div class="background-text-item" data-text="SAMSUNG MICROFIBER FILTER"></div>
-				<div class="background-text-item" data-text="BAEMIN CAREERS BAEMIN CAREERS"></div>
-				<div class="background-text-item" data-text="SK MUFFIN SK MUFFIN"></div>
-				<div class="background-text-item" data-text="SHINSEGAE CHICOR SHINSEGAE CHICOR"></div>
+
+		</div>
+
+		<!-- 배경 텍스트 (카드별 하나씩만) -->
+		<div class="background-text">
+			<div class="background-text-item" data-text="SHINHAN SUPER SOL"></div>
+			<div class="background-text-item" data-text="SAMSUNG MICROFIBER FILTER"></div>
+			<div class="background-text-item" data-text="BAEMIN CAREERS BAEMIN CAREERS"></div>
+			<div class="background-text-item" data-text="SK MUFFIN SK MUFFIN"></div>
+			<div class="background-text-item" data-text="SHINSEGAE CHICOR SHINSEGAE CHICOR"></div>
+		</div>
+
+		<!-- 프로젝트 상세 페이지 컨테이너 -->
+		<div id="projectDetailContainer" style="display: none; position: relative; z-index: 1000;">
+			<!-- 상세 페이지 내용이 여기에 로드됨 -->
+		</div>
+
+		<!-- About Me 페이지 컨테이너 -->
+		<div id="aboutMeContainer">
+			<header class="about-header">
+				<!-- <h1 class="about-title">Sans</h1> -->
+				<a class="about-home-btn" id="aboutHomeBtn" href="#">Home</a>
+			</header>
+			<div class="about-content">
+				<div class="about-text">About Me Content Here</div>
 			</div>
 		</div>
 
@@ -98,6 +124,7 @@
 	<!-- Scripts -->
 	<script src="js/imagesloaded.pkgd.min.js"></script>
 	<script src="js/scroll-cards.js"></script>
+	<script src="js/menu.js"></script>
 </body>
 
 </html>

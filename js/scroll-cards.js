@@ -4,6 +4,8 @@ class VirtualCardStack {
     this.totalCards = this.cards.length;
     this.menuItems = Array.from(document.querySelectorAll('.project-menu-list__item'));
     this.backgroundTexts = Array.from(document.querySelectorAll('.background-text-item'));
+    this.projectCenter = document.getElementById('currentProject');
+    this.centerTitles = Array.from(document.querySelectorAll('.center-title'));
 
     this.currentIndex = 0;
     this.targetIndex = 0;
@@ -52,6 +54,7 @@ class VirtualCardStack {
     const cooldown = 180;
 
     window.addEventListener('wheel', e => {
+      if (window.isDetailViewOpen) return;
       e.preventDefault();
       const now = performance.now();
       if (now - lastWheel < cooldown) return;
@@ -160,6 +163,7 @@ class VirtualCardStack {
     this.menuItems.forEach(item => {
       item.classList.toggle('active', item.dataset.index === activeDataIndex);
     });
+    this.projectCenter.textContent = this.centerTitles[this.currentIndex]?.value;
   }
 
   updateBackgroundColor() {
