@@ -1,0 +1,335 @@
+html {
+  font-size: 62.5%;
+  /* line-height: .09375rem
+  line-height: 1.5; */
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+article,aside,details,figcaption,figure,footer,header,menu,nav,section {
+  display: block
+}
+a {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Poppins', 'Pretendard', sans-serif;
+  word-break: keep-all;
+  font-size: 1.6rem;
+}
+
+/* 노트북 & PC : 1024px-
+@media all and (min-width:1024px){
+	
+} */
+
+/* 태블릿 가로 (해상도 768px ~ 1023px) */
+/* @media all and (min-width:768px) and (max-width:1023px){
+	font-size: 75%;
+} */
+/* 태블릿 가로, 세로 : 480px-767px */
+/* @media all and (min-width:480px) and (max-width:767px){
+	font-size: 50%;
+} */
+
+
+
+
+/* Header */
+header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  z-index: 1000;
+  background: white;
+}
+header .header-warp{
+  margin: 0 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header .logo img {
+  height: 22px;
+}
+header aside {
+  display: flex;
+  align-items: center;
+}
+header nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+header nav ul {
+  display: flex;
+  flex-direction: row;
+}
+
+header a {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  margin: 0 30px;
+  color: #111;
+  position: relative;
+  display: inline-block;
+  padding: 8px 0px;
+  text-decoration: none;
+}
+header nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.3rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 60%;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease, height 0.15s ease 0.3s; 
+}
+
+header nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  height: 2px;
+}
+
+header nav a.active::after {
+  transform: scaleX(1);
+  height: 2px;
+}
+
+header .lang {
+  margin-left: 85px;
+}
+header .lang a {
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  color: #111;
+  display: flex;
+  align-items: center;
+}
+header .lang a::after {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin-left: 5px;
+  background: url(image/common/ico-arrow-down.svg) no-repeat;
+  background-size: contain;
+}
+
+/* Header White Theme */
+.header-w a {
+  color: #fff !important;
+}
+
+.header-w .lang a::after {
+  background: url(image/common/ico-arrow-down-w.svg) no-repeat !important;
+  background-size: contain !important;
+}
+
+/* Section */
+section {
+  padding: 0 73px;
+}
+section .tit {
+  width: 100%;
+  margin-bottom: 48px;
+}
+section h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 4.8rem;
+  line-height: 6.7rem;
+  color: #111;
+}
+section .tit-w {
+  margin: 0;
+  font-weight: 600;
+  font-size: 3.8rem;
+  line-height: 6.1rem;
+  color: #fff;
+  text-align: center;
+}
+section h3 {
+  font-weight: 600;
+  font-size: 2.0rem;
+  line-height: 2.6rem;
+  margin-bottom: 2.4rem;
+  color: #b2b2b2;
+}
+section .more-black {
+  margin-top: 4rem;
+}
+section .more-black a {
+  display: flex;
+  align-items: center;
+  height: 5.8rem;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2rem;
+  padding: 1.7rem 2.8rem;
+  color: #fff;
+  background-color: #111;
+  border-radius: 35px;
+}
+section .more-black a::after {
+  content: "";
+  display: inline-block;
+  background: url(image/common/ico-seemore-w.svg) no-repeat center center / cover;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 10px;
+}
+
+
+
+/* Footer */
+footer {
+
+}
+footer .ft-waper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 52px;
+  color: #111;
+  padding: 0 50px;
+  margin-bottom: 200px;
+}
+
+footer aside {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+footer aside .copy {
+  margin-right: auto;
+}
+footer .logo img {
+  /* width: 36.8rem; */
+  height: 2rem;
+  padding-right: 86px;
+  filter: brightness(0.1);
+}
+footer p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  color: #111;
+}
+footer b:nth-of-type(n+2) { 
+  margin-left: 15px;
+}
+footer aside p:nth-child(1) {
+  margin-bottom: 23px;
+}
+footer .out-link a {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: #b2b2b2;
+}
+footer .out-link a:last-child:before {
+  content: "";
+  display: inline-block;
+  width: .0625rem;
+  height: .75rem;
+  background-color: #b2b2b2;
+  margin-right: .5rem;
+  margin-left: .5rem;
+  vertical-align: middle;
+}
+footer .footer-bg {
+  display: block;
+  width: 100%;
+  height: 40rem;
+  background: url(image/common/footer-bg.png) no-repeat center center / cover;
+}
+
+
+
+
+@media all and (max-width: 480px) {
+
+  html {
+    font-size: 50%;
+  }
+
+  section {
+    padding: 0 16px;
+  }
+
+  header {
+    height: 60px;
+  }
+
+  header .header-warp {
+    margin: 0 16px;
+  }
+
+  header nav {
+    display: none;
+  }
+
+  header .lang {
+    margin-left: 0;
+  }
+
+  section h2 {
+    font-size: 3.2rem;
+    line-height: 1.4;
+  }
+
+  section .tit-w {
+    font-size: 2.8rem;
+    line-height: 1.5;
+  }
+
+  footer .ft-waper {
+    flex-direction: column;
+    padding: 0 20px;
+    margin-bottom: 80px;
+  }
+
+  footer .logo {
+    margin-bottom: 30px;
+  }
+
+  footer .logo img {
+    padding-right: 0;
+  }
+
+  footer aside {
+    flex-direction: column;
+  }
+
+  footer aside .copy {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
