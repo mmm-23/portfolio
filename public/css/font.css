@@ -41,14 +41,14 @@ font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
 
 @font-face {
   font-family: "rotalic";
-  src: url("/assets/GTHaptikMediumRotalic.woff") format("woff");
+  src: url("../assets/GTHaptikMediumRotalic.woff") format("woff");
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "haptik";
-  src: url("/assets/GTHaptikMedium.woff") format("woff");
+  src: url("../assets/GTHaptikMedium.woff") format("woff");
   font-style: normal;
   font-weight: 400;
 }

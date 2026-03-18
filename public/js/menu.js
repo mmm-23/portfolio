@@ -94,12 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// 프로젝트 파일 매핑
 	const projectFileMapping = {
-		'신한 슈퍼 SOL': 'menu/sinhan.html',
-		'Samsung Microfiber Filter': 'menu/samsung.html',
-		'우아한형제들 채용 사이트': 'menu/baemin.html',
-		'SK에너지 Muffin': 'menu/muffin.html',
-		'신세계 Chicor': 'menu/chicor.html',
-		'iloom': 'menu/iloom.html'
+		'신한 슈퍼 SOL': 'public/menu/sinhan.html',
+		'Samsung Microfiber Filter': 'public/menu/samsung.html',
+		'우아한형제들 채용 사이트': 'public/menu/baemin.html',
+		'SK에너지 Muffin': 'public/menu/muffin.html',
+		'신세계 Chicor': 'public/menu/chicor.html',
+		'iloom': 'public/menu/iloom.html'
 	};
 
 	// DOM 요소 캐싱
@@ -287,7 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	}
 
-	// [삭제됨] 이전에 여기에 있던 잘못된 위치의 코드는 삭제했습니다.
 
 	/**
 	 * 프로젝트 상세 페이지 전환 (이미 열려있을 때)
@@ -631,27 +630,27 @@ document.addEventListener('DOMContentLoaded', () => {
 	function generateGridMenu() {
 		const projects = [{
 				title: 'sinhan',
-				image: '../assets/img/cover_1.jpg'
+				image: 'public/assets/img/cover_1.jpg'
 			},
 			{
 				title: 'samsung',
-				image: '../assets/img/cover_2.jpg'
+				image: 'public/assets/img/cover_2.jpg'
 			},
 			{
 				title: 'baemin',
-				image: '../assets/img/cover_3.jpg'
+				image: 'public/assets/img/cover_3.jpg'
 			},
 			{
 				title: 'muffin',
-				image: '../assets/img/cover_4.jpg'
+				image: 'public/assets/img/cover_4.jpg'
 			},
 			{
 				title: 'chicor',
-				image: '../assets/img/cover_5.jpg'
+				image: 'public/assets/img/cover_5.jpg'
 			},
 			{
 				title: 'iloom',
-				image: '../assets/img/cover_6.jpg'
+				image: 'public/assets/img/cover_6.jpg'
 			}
 		];
 

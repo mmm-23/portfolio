@@ -20,6 +20,7 @@ class VirtualCardStack {
     this.currentIndex = 0;
     this.targetIndex = 0;
     this.scrollProgress = 0;
+    this.direction = 1;
 
     // 애니메이션 설정
     this.textOffsets = [];
@@ -55,6 +56,8 @@ class VirtualCardStack {
       card.style.height = '44rem';
       card.style.transformOrigin = 'center center';
       card.style.transform = 'translate(-50%, -50%)';
+      card.style.transition = 'transform 820ms cubic-bezier(0.22, 1, 0.36, 1), opacity 680ms cubic-bezier(0.22, 1, 0.36, 1), filter 680ms cubic-bezier(0.22, 1, 0.36, 1)';
+      card.style.willChange = 'transform, opacity, filter';
     });
 
     const firstCard = this.cards[0];
@@ -69,7 +72,7 @@ class VirtualCardStack {
    */
   setupEvents() {
     let lastWheel = 0;
-    const cooldown = 180;
+    const cooldown = 720;
 
     // 휠 스크롤 이벤트
     window.addEventListener('wheel', e => {
@@ -80,6 +83,7 @@ class VirtualCardStack {
       lastWheel = now;
 
       const direction = Math.sign(e.deltaY);
+      this.direction = direction;
       this.targetIndex += direction;
     }, {
       passive: false
@@ -143,29 +147,28 @@ class VirtualCardStack {
 
   updateCards() {
     this.cards.forEach((card, index) => {
-      let offset = index - this.scrollProgress;
+      const activeIndex = Math.round(this.targetIndex);
+      const length = this.totalCards;
+      const wrappedActive = (activeIndex % length + length) % length;
+      
+      let distance = index - wrappedActive;
+      if (distance > length / 2) distance -= length;
+      if (distance < -length / 2) distance += length;
 
-      // Wrap around for looping effect
-      while (offset < -this.totalCards / 2) offset += this.totalCards;
-      while (offset > this.totalCards / 2) offset -= this.totalCards;
+      const abs = Math.abs(distance);
 
-      const absOffset = Math.abs(offset);
+      const y = distance * 82;
+      const scale = 1 - abs * 0.08;
+      const opacity = Math.max(1 - abs * 0.2, 0);
+      const blur = Math.max(abs - 0.35, 0) * 1.4;
+      const extraY = abs === 0 ? this.direction * -4 : 0;
+      const zIndex = 100 - abs * 20;
 
-      // Determine properties based on the card's continuous offset
-      const scale = 1 - absOffset * 0.05;
-      const yPercent = offset * 8; // Positive offset moves down, negative up
-      const blur = absOffset * 1.5;
-      const brightness = 1 - absOffset * 0.1;
-      // Fade out cards that are further away
-      const opacity = Math.max(0, 1 - (absOffset - 1) * 0.5);
-      // Adjust z-index to stack cards correctly
-      const zIndex = 100 - absOffset * 10;
-
-      card.style.transform = `translate(-50%, calc(-50% + ${yPercent}%)) scale(${scale})`;
-      card.style.filter = `blur(${blur}px) brightness(${brightness})`;
+      card.style.transform = `translate(-50%, -50%) translateY(${y + extraY}px) scale(${scale})`;
+      card.style.filter = `blur(${blur}px)`;
       card.style.opacity = opacity;
       card.style.zIndex = Math.round(zIndex);
-      card.style.pointerEvents = (absOffset < 0.5) ? 'auto' : 'none';
+      card.style.pointerEvents = (abs === 0) ? 'auto' : 'none';
     });
   }
 

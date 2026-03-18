@@ -359,6 +359,8 @@ body.about-me-open .frame__back {
 	position: relative;
 	font-family: var(--font-primary);
 	cursor: pointer;
+	width: min(430px, 92%);
+	aspect-ratio: 0.82;
 }
 
 .card-section .content {
