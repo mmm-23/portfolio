@@ -50,12 +50,12 @@ class VirtualCardStack {
   initializeCards() {
     this.cards.forEach(card => {
       card.style.position = 'fixed';
-      card.style.top = '50%';
-      card.style.left = '50%';
       card.style.width = '44rem';
       card.style.height = '44rem';
+      card.style.left = 'calc(50% - 22rem)';
+      card.style.top = 'calc(50% - 22rem)';
       card.style.transformOrigin = 'center center';
-      card.style.transform = 'translate(-50%, -50%)';
+      card.style.transform = '';
       card.style.transition = 'none';
       card.style.willChange = 'transform, opacity, filter';
     });
@@ -146,6 +146,12 @@ class VirtualCardStack {
   }
 
   updateCards() {
+    const VH_HALF = window.innerHeight * 0.3; // 카드 간격과 3D 효과 조절을 위한 기준값
+    const MAX_ROTATION = 70;   // rotateX 최대 각도 (degrees)
+    const MAX_DEPTH = 100;     // translateZ 최대값 (px)
+    const MIN_SCALE = 0.86;
+    const SCALE_RANGE = 0.14;
+
     this.cards.forEach((card, index) => {
       const length = this.totalCards;
 
@@ -155,13 +161,23 @@ class VirtualCardStack {
 
       const abs = Math.abs(distance);
 
-      const y = distance * 82;
-      const scale = 1 - abs * 0.08;
-      const opacity = Math.max(1 - abs * 0.2, 0);
+      const y = distance * 300;
+
+      // gradientslider 스타일 3D 효과 (세로 방향 적용)
+      const norm = Math.max(-1, Math.min(1, y / VH_HALF));
+      const absNorm = Math.abs(norm);
+      const invNorm = 1 - absNorm;
+
+      const rx = norm * MAX_ROTATION;          // 위아래로 갈수록 기울어짐
+      const tz = invNorm * MAX_DEPTH;          // 중앙 카드가 앞으로 튀어나옴
+      const scale = MIN_SCALE + invNorm * SCALE_RANGE;
+      const scaleY = scale * (1 - absNorm * 0.4); // 카드의 세로 길이 (0.2를 조절)
+
+      const opacity = Math.max(1 - abs * 0.5, 0);
       const blur = Math.max(abs - 0.35, 0) * 1.4;
       const zIndex = 100 - abs * 20;
 
-      card.style.transform = `translate3d(-50%, calc(-50% + ${y}px), 0) scale(${scale})`;
+      card.style.transform = `perspective(1200px) translate3d(0, ${y}px, ${tz}px) rotateX(${rx}deg) scale(${scale}, ${scaleY})`;
       card.style.filter = `blur(${blur}px)`;
       card.style.opacity = opacity;
       card.style.zIndex = Math.round(zIndex);

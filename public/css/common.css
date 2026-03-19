@@ -351,7 +351,7 @@ body.about-me-open .frame__back {
 
 .scroll-wrapper.fade-out .content--sticky:not(.bounce-click):not(.bounce-in-home):not(.fan-in-home) {
 	opacity: 0 !important;
-	transform: translate(-50%, -50%) scale(0.3) !important;
+	transform: scale(0.3) !important;
 	transition: opacity 0.3s ease-out, transform 0.3s ease-out !important;
 }
 
@@ -400,15 +400,15 @@ body.about-me-open .frame__back {
 
 @keyframes bounceClick {
 	0% {
-		transform: translate(-50%, -50%) scale(1);
+		transform: perspective(1200px) translate3d(0, 0px, 100px) rotateX(0deg) scale(1);
 		opacity: 1;
 	}
 	40% {
-		transform: translate(-50%, -50%) scale(1.15);
+		transform: perspective(1200px) translate3d(0, 0px, 100px) rotateX(0deg) scale(1.15);
 		opacity: 1;
 	}
 	100% {
-		transform: translate(-50%, -50%) scale(0.9);
+		transform: perspective(1200px) translate3d(0, 0px, 100px) rotateX(0deg) scale(0.9);
 		opacity: 0;
 	}
 }
@@ -1005,7 +1005,7 @@ body.about-me-open .frame__back {
 
 /* 홈 카드 등장시 바운스 효과 - 중앙 카드 */
 .content--sticky.bounce-in-home {
-    animation: bounceInHome 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    animation: bounceInHome 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
     animation-delay: 0.15s;
     outline: none !important;
     filter: none !important;
@@ -1014,15 +1014,15 @@ body.about-me-open .frame__back {
 @keyframes bounceInHome {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5);
+        transform: perspective(1200px) translate3d(0, 0px, 100px) rotateX(0deg) scale(0.5);
     }
     60% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.05);
+        transform: perspective(1200px) translate3d(0, 0px, 100px) rotateX(0deg) scale(1.05);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: perspective(1200px) translate3d(0, 0px, 100px) rotateX(0deg) scale(1);
     }
 }
 

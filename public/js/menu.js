@@ -388,46 +388,99 @@ document.addEventListener('DOMContentLoaded', () => {
 			const cards = document.querySelectorAll('.content--sticky');
 			const currentIndex = window.cardStack ? window.cardStack.currentIndex : 0;
 
+			// updateCards()와 동일한 상수
+			const VH_HALF = window.innerHeight * 0.3;
+			const MAX_ROTATION = 80;
+			const MAX_DEPTH = 100;
+			const MIN_SCALE = 0.86;
+			const SCALE_RANGE = 0.14;
+			const totalCards = cards.length;
+			const scrollProgress = window.cardStack ? window.cardStack.scrollProgress : currentIndex;
+
+			// 중앙 카드: 3D 효과 초기화 및 바운스 인
+			cards[currentIndex].style.transition = 'none';
+			cards[currentIndex].style.transform = `perspective(1200px) translate3d(0, 0px, ${MAX_DEPTH}px) rotateX(0deg) scale(1)`;
+			cards[currentIndex].style.opacity = '1';
+			cards[currentIndex].style.filter = 'blur(0px)';
 			cards[currentIndex].classList.add('bounce-in-home');
 
+			// 나머지 카드: 중앙 위치에서 시작, 숨김
 			cards.forEach((card, index) => {
 				if (index !== currentIndex) {
-					card.style.transform = 'translate(-50%, -50%) scale(1)';
-					card.style.filter = 'blur(0px) brightness(1)';
-					card.classList.add('fan-in-home');
+					card.style.transition = 'none';
+					card.style.transform = `perspective(1200px) translate3d(0, 0px, 0px) scale(${MIN_SCALE})`;
+					card.style.opacity = '0';
+					card.style.filter = 'blur(0px)';
 				}
 			});
 
 			scrollWrapper.style.display = 'block';
 			scrollWrapper.classList.remove('fade-out');
 
-			requestAnimationFrame(() => {
-				cards.forEach((card, index) => {
-					if (index !== currentIndex) {
-						let offset = index - currentIndex;
-						const totalCards = cards.length;
-						while (offset < -totalCards / 2) offset += totalCards;
-						while (offset > totalCards / 2) offset -= totalCards;
-
-						const absOffset = Math.abs(offset);
-						const yPercent = offset * 8;
-						const scale = 1 - absOffset * 0.05;
-						const blur = absOffset * 1.5;
-						const brightness = 1 - absOffset * 0.1;
-						const zIndex = 100 - absOffset * 10;
-
-						card.style.transform = `translate(-50%, calc(-50% + ${yPercent}%)) scale(${scale})`;
-						card.style.filter = `blur(${blur}px) brightness(${brightness})`;
-						card.style.zIndex = Math.round(zIndex);
-						card.style.pointerEvents = (absOffset < 0.5) ? 'auto' : 'none';
-						card.classList.add('visible');
-					}
-				});
+			// 각 카드의 최종 위치 미리 계산 (updateCards()와 동일한 로직)
+			const cardTargets = Array.from(cards).map((card, index) => {
+				if (index === currentIndex) return null;
+				let distance = index - scrollProgress;
+				if (distance > totalCards / 2) distance -= totalCards;
+				if (distance < -totalCards / 2) distance += totalCards;
+				const abs = Math.abs(distance);
+				const y = distance * 300;
+				const norm = Math.max(-1, Math.min(1, y / VH_HALF));
+				const absNorm = Math.abs(norm);
+				const invNorm = 1 - absNorm;
+				const scale = MIN_SCALE + invNorm * SCALE_RANGE;
+				const scaleY = scale * (1 - absNorm * 0.4); // 위아래 카드의 세로 길이가 늘어나보이는 현상을 줄임
+				return {
+					abs,
+					transform: `perspective(1200px) translate3d(0, ${y}px, ${invNorm * MAX_DEPTH}px) rotateX(${norm * MAX_ROTATION}deg) scale(${scale}, ${scaleY})`,
+					opacity: Math.max(1 - abs * 0.5, 0),
+					blur: Math.max(abs - 0.35, 0) * 1.4,
+					zIndex: Math.round(100 - abs * 20)
+				};
 			});
 
+			// 중앙 카드 바운스(animation-delay:150ms)가 시작된 뒤 뒷 카드 순차 등장
 			setTimeout(() => {
-				cards.forEach(card => {
-					card.classList.remove('bounce-in-home', 'fan-in-home', 'visible');
+				requestAnimationFrame(() => {
+					// 1프레임: transition 먼저 적용 (값은 아직 변경 안 함)
+					cards.forEach((card, index) => {
+						if (index === currentIndex) return;
+						const target = cardTargets[index];
+						if (!target) return;
+						const delay = target.abs * 60; // 1단계 60ms, 2단계 120ms, ...
+						card.style.transition = `transform 0.65s cubic-bezier(0.34, 1.3, 0.64, 1) ${delay}ms, opacity 0.55s ease-out ${delay}ms, filter 0.55s ease-out ${delay}ms`;
+					});
+					requestAnimationFrame(() => {
+						// 2프레임: 값 변경 → transition이 올바르게 발동
+						cards.forEach((card, index) => {
+							if (index === currentIndex) return;
+							const target = cardTargets[index];
+							if (!target) return;
+							card.style.transform = target.transform;
+							card.style.opacity = target.opacity;
+							card.style.filter = `blur(${target.blur}px)`;
+							card.style.zIndex = target.zIndex;
+						});
+					});
+				});
+			}, 180);
+
+			setTimeout(() => {
+				// 중앙 카드: updateCards()가 넘겨받을 정확한 transform 미리 설정 (빈 프레임 방지)
+				cards[currentIndex].style.transition = '';
+				cards[currentIndex].style.transform = `perspective(1200px) translate3d(0, 0px, ${MAX_DEPTH}px) rotateX(0deg) scale(1)`;
+				cards[currentIndex].style.opacity = '1';
+				cards[currentIndex].style.filter = '';
+				cards[currentIndex].classList.remove('bounce-in-home');
+
+				// 나머지 카드 인라인 스타일 정리 후 updateCards()에게 제어권 이전
+				cards.forEach((card, index) => {
+					if (index === currentIndex) return;
+					card.classList.remove('fan-in-home', 'visible');
+					card.style.transition = '';
+					card.style.transform = '';
+					card.style.opacity = '';
+					card.style.filter = '';
 				});
 				window.isReturningHome = false;
 			}, 1000);
