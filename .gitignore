@@ -1,5 +1,24 @@
+# 의존성 파일 (용량이 너무 커서 올리면 안 됨)
 node_modules/
+
+# Claude 관련 파일 및 백업
+.git/
+.claude/
+.claude.json*
+history.jsonl
+mcp-needs-auth-cache.json
+stats-cache.json
+.claude/cache/
+.claude/file-history/
+
+# 빌드 결과물
 dist/
+dist-ssr/
+*.local
+
+# Vite 임시 파일
+.vite/
+
+# 시스템 파일
 .DS_Store
 svg/
-my-portfolio-demo/

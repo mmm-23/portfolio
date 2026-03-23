@@ -40,6 +40,7 @@ html.no-scroll {
 *::after,
 *::before {
 	box-sizing: border-box;
+	word-break: keep-all;
 }
 
 :root {
@@ -676,7 +677,7 @@ body.about-me-open .frame__back {
 	#aboutMeContainer:is(.active, .closing) .about-text .text2 {
 		width: 100%;
 		max-width: 100%;
-		font-size: calc(var(--font-size-sm) - 0.1rem); /* 13px */
+		font-size: calc(var(--font-size-sm) - 0.1rem);
 		line-height: 2.4rem;
 	}
 
@@ -1579,26 +1580,39 @@ body.detail-is-open {
 .project-body p,
 .project-body li {
 	font-size: 1em;
-	line-height: 3.2rem;
+	line-height: 2.8rem;
 }
 .img-frame {
-  overflow: hidden;
-  margin: 15px 0;
   width: 100%;
+  overflow: hidden;
+  margin: 2.4rem 0;
 }
+
+.project-body img,
+.project-body .project-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2.4rem 0;
+	transform: none !important;
+}
+
 .project-body .img-frame .project-image {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+	height: auto;
   margin: 0;               /* 마진은 부모(.img-frame)가 가져갔으니 0으로 초기화 */
   transition: transform 0.1s linear; /* 부드러운 움직임 */
   will-change: transform;
 }
 
 .project-body img {
-	width: 100%;
-	height: auto;
+	display: block;
+  margin: 2.4rem auto;
+  max-width: 100%;
+  height: auto;
 	translate: none;
 	rotate: none;
 	scale: none;
